@@ -1,9 +1,18 @@
 {% render 'partials/head.liquid' %}
 
-
+    <link rel="stylesheet" href="../styles/stylesheet.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
 
 <header class="header-container">
+
+<a class="back-href" href="/">
+    <img class="back-href-arrow" width="20" height="22" viewBox="0 0 20 22" src="/assets/leftarrow.svg">
+<h2>Terug naar dashboard</h2>
+</a>
 
     <h1 class="header-title">Gebruikers statistieken</h1>
 
@@ -21,8 +30,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-
 <script>
 
     const lineChart = document.getElementById("line-chart");
@@ -32,8 +39,8 @@
         data: {
             labels: ["Apr 4", "Apr 9", "Apr 15", "Apr 21", "Apr 27", "May 3", "May 9", "May 15", "May 21", "May 27", "Jun 7", "Jun 12", "Jun 18", "Jun 24","Jun 30"],
             datasets: [{
-                data: [ 21, 12, 7, 11, 13, 9, 17, 30, 46, 5, 23, 34, 6, 10, 13 ],
-                borderWidth: 0.5,
+                data: [ 21, 12, 7, 11, 13, 9, 17, 30, 0, 5, 23, 34, 6, 10, 13 ],
+                borderWidth: 2,
             }]
 
         },
@@ -87,5 +94,37 @@
             
         }
     })
+</script>
+
+    <section class="classlist"> 
+    <h2>Leerjaar</h2>
+          <div class="buttonstopic">
+        <button class="button-filter" type="button" data-topic="jaar1">Jaar 1</button>
+        <button class="button-filter" type="button" data-topic="jaar2">Jaar 2</button>
+    </div>
+    <form action="/search" method="get" class="">
+  <div class="search">
+    <input type="text" placeholder="Zoek Klassen"  class="input-searching-tool">
+    <button type="submit" class="search-button">
+    Zoek
+    </button>
+  </div>
+</form>
+
+    <div class="buttons-container">
+        <button class="button-1 active">Klassen</button>
+        <button class="button-2">Studenten</button>
+    </div>
+
+{% for klas in klassen %}
+
+  <section class="classlist">
+      <h2>{{ klas.title }}</h2>
+      <p>{{ klas.leraar }}</p>
+      <p>{{ klas.percentage }} </p> 
+      <a href="/klas/{{ klas.id }}"> Klas bekijken ↗</a>
+  </section>
+
+{% endfor %}
 
     {% render 'partials/footer.liquid' %}

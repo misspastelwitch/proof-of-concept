@@ -70,3 +70,24 @@ body {
     background-color: white;
     color: black;
 }
+
+/* Search Buttons */
+
+  .buttonstopic-publication {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-32);
+    padding: var(--spacing-16);
+  }
+
+  .buttonstopic-publication button {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: var(--spacing-16);
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .buttonstopic-publication button:hover {
+    background-color: var(--color-dark-blue);
+  }
