@@ -29,7 +29,83 @@ app.set('views', './views')
 
 
 app.get('/', async function (request, response) {
-response.render('main.liquid');
+
+
+
+  // Klas data
+
+  const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
+
+  const classDataJSON = await apiResponseClasses.json()
+
+
+
+  // Card data
+
+  const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+
+  const cardInfoDataJSON = await apiResponseCardInfo.json()
+
+
+
+  response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, });
+
+})
+
+
+app.get('/progressdata', async function (request, response) {
+
+
+
+  try {
+
+    // Klas data percentages
+
+    const apiResponseprogressData = await fetch('https://api.frd-delta.nl/klassen.json');
+
+    const progressDataJSON = await apiResponseprogressData.json()
+
+    console.log(progressDataJSON);
+
+
+
+    const progressPink = progressDataJSON[0].voortgang
+
+    const progressPurple = progressDataJSON[1].voortgang
+
+    const progressBlue = progressDataJSON[2].voortgang
+
+    const progressYellow = progressDataJSON[3].voortgang
+
+
+
+    console.log(progressDataJSON[0]);
+
+
+
+    console.log(progressPink, progressPurple, progressBlue, progressYellow)
+
+
+
+    response.json({ progressPink, progressPurple, progressBlue, progressYellow });
+
+  }
+
+  catch {
+
+    console.error("error")
+
+  }
+
+})
+
+
+app.get('/details/:id', async function (request, response) {
+
+  const test = "testing testing!"
+  
+  response.render('details.liquid', { details: test });
+
 });
 
 // Stel het poortnummer in waar Express op moet gaan luisteren

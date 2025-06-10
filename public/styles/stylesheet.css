@@ -4,9 +4,10 @@ body {
   --primair: #483AE6;
   --succes: #059669;
   --destructief: #DC2626;
-  --achtergrond: #fffcf4;
+  --achtergrond: ##FCFBFE;
   --font-headers-primary: #10014E;
   --font-secundair: #868E96;
+  --color-disabled: #F4F4F5;
 
 
   /* fonts */
