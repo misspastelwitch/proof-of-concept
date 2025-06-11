@@ -34,7 +34,7 @@
             <h2 hidden>Statistieken</h2>
             {% if statistics %}
                 {% assign total-users = statistics.totaalGebruikers | append: "/" | append: statistics.maxLicentie %}
-                {% assign now-online = "🟢 " | append: statistics.nuOnline %}
+                {% assign now-online = "🟢" | append: statistics.nuOnline %}
 
                 {% render 'partials/card.liquid',
                 card-title: "Totale gebruikers",
