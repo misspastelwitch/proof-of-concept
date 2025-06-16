@@ -1,8 +1,5 @@
 {% render 'partials/head.liquid' %}
-<script src="scripts/script.js" defer></script>
-<script src="scripts/progress.js" defer></script>
 <script src="/scripts/script.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
 <style> .loader {
   position: fixed;
@@ -79,8 +76,38 @@
             label-text-2: "Course data",
             label-name: "toggle-1"
             %}
-        </header>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+        <div class="chart-main-container">
+            <div class="chart-container">
+                <canvas id="line-chart" class="chart" width="15em" height="4em"></canvas>
+            </div>
+        </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const lineChart = document.getElementById("line-chart");
+  new Chart(lineChart, {
+    type: "line",
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr"],
+      datasets: [{
+        label: "Voorbeeld",
+        data: [10, 20, 15, 30],
+        backgroundColor: "rgba(0,0,255,0.2)",
+        borderColor: "rgba(0,0,255,1)",
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true }
+      }
+    }
+  });
+});
+</script>
+</header>
         {%comment%}
          {% render 'partials/chart.liquid'%}
 {%endcomment%}

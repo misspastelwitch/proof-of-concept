@@ -6,7 +6,7 @@ body {
   --destructief: #DC2626;
   --achtergrond: ##FCFBFE;
   --font-headers-primary: #10014E;
-  --font-secundair: #868E96;
+  --font-secondair: #868E96;
   --color-disabled: #F4F4F5;
 
 
@@ -46,12 +46,12 @@ body {
 
 .paragraph {
   font-family: var(--general);
-  color: var(--font-secundair-color);
+  color: var(--font-secondair-color);
 }
 
 p {
   font-family: var(--general);
-  color: var(--font-secundair-color);
+  color: var(--font-secondair-color);
 }
 
 h1{
