@@ -13,8 +13,8 @@ body {
   /* fonts */
   @font-face {
     font-family: "headers-primary";
-    src: url(../fonts/Rubik-VariableFont_wght/woff2);
-      font-family: "Rubik", sans-serif;
+    src: url(../fonts/Rubik-VariableFont_wght.ttf) format("truetype");
+    font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -22,31 +22,24 @@ body {
 
 
 @font-face {
-  font-family: "Figtree", sans-serif; ;
-  src: url();
+  font-family: "general";
+  src: url(../fonts/Figtree-VariableFont_wght.ttf) format("truetype");
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
   --header-primary-font: "headers-primary", sans-serif;
-  --general-font: "Figtree", sans-serif;
+  --general-font: "general", sans-serif;
 
 }
 
 .h1,
-.h2,
 .h3,
 .h4,
 .h5,
 .h6 {
-  font-family: var(--header-primary-font);
-  color: var(--font-headers-primary);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
 }
@@ -59,4 +52,8 @@ h6 {
 p {
   font-family: var(--general);
   color: var(--font-secundair-color);
+}
+
+h1{
+  font-size: x-large;
 }
