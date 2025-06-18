@@ -583,6 +583,15 @@ chart-main-container{
     }
 }
 
+@keyframes donut1 {
+    0% {
+        stroke-dasharray: 0, 100;
+    }
+    100% {
+        stroke-dasharray: 69, 31;
+    }
+}
+
 @media (min-width: 992px) {
     .svg-item {
         width: 80%;
