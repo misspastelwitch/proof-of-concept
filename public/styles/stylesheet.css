@@ -15,23 +15,25 @@ body {
     font-family: "headers-primary";
     src: url(../fonts/Rubik-VariableFont_wght.ttf) format("truetype");
     font-family: "Rubik", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
 
 
-@font-face {
-  font-family: "general";
-  src: url(../fonts/Figtree-VariableFont_wght.ttf) format("truetype");
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
+  @font-face {
+    font-family: "general";
+    src: url(../fonts/Figtree-VariableFont_wght.ttf) format("truetype");
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
 
-  --header-primary-font: "headers-primary", sans-serif;
-  --general-font: "general", sans-serif;
+  --header-primary-font: "headers-primary",
+  sans-serif;
+  --general-font: "general",
+  sans-serif;
 
 }
 
@@ -54,6 +56,6 @@ p {
   color: var(--font-secondair-color);
 }
 
-h1{
+h1 {
   font-size: x-large;
 }

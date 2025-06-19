@@ -1,13 +1,13 @@
 <div class="search-bar-container">
-    <label for="{{ search-bar-id }}" class="search-bar-label">{{ search-bar-label-text }}</label>
-    <input type="search" placeholder="Zoek klassen" class="search-bar" id="{{ search-bar-id }}">
-    <ul id="resultsList" class="search-results"></ul>
+  <label for="{{ search-bar-id }}" class="search-bar-label">{{ search-bar-label-text }}</label>
+  <input type="search" placeholder="Zoek klassen" class="search-bar" id="{{ search-bar-id }}">
+  <ul id="resultsList" class="search-results"></ul>
 </div>
 <script>
   const API_URL = 'https://api.frd-delta.nl/klassen.json';
-
+  
   let allResults = [];
-
+  
   // Fetch van API
   fetch(API_URL)
     .then(response => response.json())
@@ -15,7 +15,7 @@
       allResults = data;
       displayResults([]);
     });
-
+  
   document.getElementById('{{ search-bar-id }}').addEventListener('input', function() {
     const query = this.value.trim().toLowerCase();
     if (!query) {
@@ -27,7 +27,7 @@
     );
     displayResults(filtered);
   });
-
+  
   function displayResults(results) {
     const list = document.getElementById('resultsList');
     list.innerHTML = '';

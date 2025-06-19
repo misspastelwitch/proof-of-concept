@@ -1,72 +1,60 @@
-
-        <div class="chart-main-container">
-            <div class="chart-container">
-                <canvas class="chart" id="line-chart" width="80%"></canvas>
-            </div>
-        </div>
-
+<div class="chart-main-container">
+  <div class="chart-container">
+    <canvas class="chart" id="line-chart" width="80%"></canvas>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
 <script>
-
-    const lineChart = document.getElementById("line-chart");
-
-    new Chart(lineChart, {
-        type: "line",
-        data: {
-            labels: ["Apr 4", "Apr 9", "Apr 15", "Apr 21", "Apr 27", "May 3", "May 9", "May 15", "May 21", "May 27", "Jun 7", "Jun 12", "Jun 18", "Jun 24","Jun 30"],
-            datasets: [{
-                      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-                data: [ 21, 12, 7, 11, 13, 9, 17, 30, 46, 5, 23, 34, 6, 10, 13 ],
-                borderWidth: 0.5,
-            }]
-
-        },
-        options: {
-            scales: {
-                y: {
-                    display: true,
-                    grid: {
-                        display: true
-                    },
-                },
-                x: {
-                    display: true,
-                    grid: {
-                        display: false
-                    }
-                }
-            },
-
-            plugins: {
-                legend: {
-                    display: false  
-                },
-                title: {
-                    display: true,
-                    text: "Actieve gebruikers",
-                    align: "start",
-                    padding: {
-                        top: 40,
-                        right: 10,
-                        
-                        bottom: 5
-                    }
-                },
-                subtitle: {
-                display: true,
-                text: "Totale aantal actieve gebruikers van afgelopen 3 maanden",
-                align: "start",
-                padding: {
-                    left: 100
-
-                }
-            }
-            }
-            
-        }
-    })
+const lineChart = document.getElementById("line-chart");
+new Chart(lineChart, {
+type: "line",
+data: {
+labels: ["Apr 4", "Apr 9", "Apr 15", "Apr 21", "Apr 27", "May 3", "May 9", "May 15", "May 21", "May 27", "Jun 7", "Jun 12", "Jun 18", "Jun 24","Jun 30"],
+datasets: [{
+lineTension: 0,
+backgroundColor: "rgba(0,0,255,1.0)",
+borderColor: "rgba(0,0,255,0.1)",
+data: [ 21, 12, 7, 11, 13, 9, 17, 30, 46, 5, 23, 34, 6, 10, 13 ],
+borderWidth: 0.5,
+}]
+},
+options: {
+scales: {
+y: {
+display: true,
+grid: {
+display: true
+},
+},
+x: {
+display: true,
+grid: {
+display: false
+}
+}
+},
+plugins: {
+legend: {
+display: false  
+},
+title: {
+display: true,
+text: "Actieve gebruikers",
+align: "start",
+padding: {
+top: 40,
+right: 10,
+bottom: 5
+}
+},
+subtitle: {
+display: true,
+text: "Totale aantal actieve gebruikers van afgelopen 3 maanden",
+align: "start",
+padding: {
+left: 100
+}
+}
+}
+}
+})

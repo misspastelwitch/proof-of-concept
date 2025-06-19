@@ -1,6 +1,5 @@
 {% render 'partials/head.liquid' %}
 <script src="/scripts/script.js" defer></script>
-
 <style> .loader {
   position: fixed;
   background-color: #FFF;
@@ -10,180 +9,157 @@
   top: 0;
   left: 0;
   z-index: 10;
-}
+  }
 </style>
- <style>
-.loader {
-    -webkit-animation: load-out 4s;
-    animation: load-out 4s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-}
-.loader-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10rem;
-    height: 10rem;
-}
-@-webkit-keyframes load-out {
-    from {
-        top: 0;
-        opacity: 1;
-    }
-
-    to {
-        top: 100%;
-        opacity: 0;
-    }
-}
-
-@keyframes load-out {
-    from {
-        top: 0;
-        opacity: 1;
-    }
-
-    to {
-        top: 100%;
-        opacity: 0;
-    }
-}
+<style>
+  .loader {
+  -webkit-animation: load-out 4s;
+  animation: load-out 4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  }
+  .loader-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10rem;
+  height: 10rem;
+  }
+  @-webkit-keyframes load-out {
+  from {
+  top: 0;
+  opacity: 1;
+  }
+  to {
+  top: 100%;
+  opacity: 0;
+  }
+  }
+  @keyframes load-out {
+  from {
+  top: 0;
+  opacity: 1;
+  }
+  to {
+  top: 100%;
+  opacity: 0;
+  }
+  }
 </style>
-
 <div class="loader">
-    <img class="loader-image" src="/assets/loading-gif.gif" alt="Loading...">
+  <img class="loader-image" src="/assets/loading-gif.gif" alt="Loading...">
 </div>
-
-    <main class="main-container">
-
-        {% render 'partials/navbar.liquid' %}
-
-        <header class="header-container">
-            <a class="back-href" href="/">
-    <img class="back-href-arrow" width="20" height="22" viewBox="0 0 20 22" src="/assets/leftarrow.svg">
-<h2 class="terug-button">Terug naar dashboard</h2>
-</a>
-
-
-            <h2 class="gebruikers">Gebruikers statistieken</h2>
-
-            {% render 'partials/toggle.liquid',
-            input-id-1: "user-data",
-            input-id-2: "course-data",
-            label-text-1: "User data",
-            label-text-2: "Course data",
-            label-name: "toggle-1"
-            %}
-
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-        <div class="chart-main-container">
-            <div class="chart-container">
-                <canvas id="line-chart" class="chart" width="15em" height="4em"></canvas>
-            </div>
-        </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const lineChart = document.getElementById("line-chart");
-  new Chart(lineChart, {
-    type: "line",
-    data: {
-      labels: ["Jan", "Feb", "Mar", "Apr"],
-      datasets: [{
-        label: "Voorbeeld",
-        data: [10, 20, 15, 30],
-        backgroundColor: "rgba(0,0,255,0.2)",
-        borderColor: "rgba(0,0,255,1)",
-        borderWidth: 2,
-        tension: 0.4
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: true }
-      }
-    }
-  });
-});
-</script>
-</header>
-        {%comment%}
-         {% render 'partials/chart.liquid'%}
-{%endcomment%}
-
-        <section class="card-parent-container">
-            <h2 hidden>Statistieken</h2>
-            {% if statistics %}
-                {% assign total-users = statistics.totaalGebruikers | append: "/" | append: statistics.maxLicentie %}
-                {% assign now-online = "🟢" | append: statistics.nuOnline %}
-
-                {% render 'partials/card.liquid',
-                card-title: "Totale gebruikers",
-                count-data: total-users,
-                card-subtext: "Licentie",
-                %}
-
-                {% render 'partials/card.liquid',
-                card-title: "Nu online",
-                count-data: now-online,
-                card-subtext: "Gebruikers online op dit moment"
-                %}
-
-                {% render 'partials/card.liquid',
-                card-title: "Gemiddelde sessie",
-                count-data: statistics.gemiddeldeSessieMinuten
-                card-subtext: "minuten"
-                %}
-            {% endif %}
-        </section>
-
-
-
-        <section class="main-form-parent-container">
-            <h4 hidden>filters</h4>
-            <form class="filter-form-container">
-                {% render 'partials/select.liquid',
-                select-id: "leerjaar",
-                select-label-text: "Leerjaar",
-                select-name: "leerjaar",
-                button-value-1: "Jaar 1",
-                button-value-2: "Jaar 2",
-                %}
-
-                {% render 'partials/search-bar.liquid',
-                search-bar-id: "search-classes",
-                search-bar-label-text: "Zoek klassen"
-                %}
-            </form>
-
-            <div class="toggle-container-2">
-                {% render 'partials/toggle.liquid',
-                input-id-1: "klassen",
-                input-id-2: "studenten",
-                label-text-1: "Klassen",
-                label-text-2: "Studenten",
-                label-name: "toggle-2"
-                %}
-            </div>
-        </section>
-
-        <section class="cards-parent-container">
-            <h4 hidden>Statistieken</h4>
-            {% for class in classes %}
-                {% assign class-details-link = "/details/" | append: class.id %}
-                {% assign percentage-append-class-name = "progress-chart-" | append: class.naam | replace: ' ', '' %}
-                {% render 'partials/class-card.liquid',
-                    classname: class.naam,
-                    name: class.begeleider,
-                    progress: class.voortgang,
-                    go-to-class: class-details-link,
-                    progress-chart: percentage-append-class-name
-                %}
-            {% endfor %}
-        </section>
-    </main>
-
-   
+<main class="main-container">
+  {% render 'partials/navbar.liquid' %}
+  <header class="header-container">
+    <a class="back-href" href="/">
+      <img class="back-href-arrow" width="20" height="22" viewBox="0 0 20 22" src="/assets/leftarrow.svg">
+      <h2 class="terug-button">Terug naar dashboard</h2>
+    </a>
+    <h2 class="gebruikers">Gebruikers statistieken</h2>
+    {% render 'partials/toggle.liquid',
+    input-id-1: "user-data",
+    input-id-2: "course-data",
+    label-text-1: "User data",
+    label-text-2: "Course data",
+    label-name: "toggle-1"
+    %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <div class="chart-main-container">
+      <div class="chart-container">
+        <canvas id="line-chart" class="chart" width="15em" height="4em"></canvas>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const lineChart = document.getElementById("line-chart");
+        new Chart(lineChart, {
+          type: "line",
+          data: {
+            labels: ["Jan", "Feb", "Mar", "Apr"],
+            datasets: [{
+              label: "Voorbeeld",
+              data: [10, 20, 15, 30],
+              backgroundColor: "rgba(0,0,255,0.2)",
+              borderColor: "rgba(0,0,255,1)",
+              borderWidth: 2,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: true }
+            }
+          }
+        });
+      });
+    </script>
+  </header>
+  {%comment%}
+  {% render 'partials/chart.liquid'%}
+  {%endcomment%}
+  <section class="card-parent-container">
+    <h2 hidden>Statistieken</h2>
+    {% if statistics %}
+    {% assign total-users = statistics.totaalGebruikers | append: "/" | append: statistics.maxLicentie %}
+    {% assign now-online = "🟢" | append: statistics.nuOnline %}
+    {% render 'partials/card.liquid',
+    card-title: "Totale gebruikers",
+    count-data: total-users,
+    card-subtext: "Licentie",
+    %}
+    {% render 'partials/card.liquid',
+    card-title: "Nu online",
+    count-data: now-online,
+    card-subtext: "Gebruikers online op dit moment"
+    %}
+    {% render 'partials/card.liquid',
+    card-title: "Gemiddelde sessie",
+    count-data: statistics.gemiddeldeSessieMinuten
+    card-subtext: "minuten"
+    %}
+    {% endif %}
+  </section>
+  <section class="main-form-parent-container">
+    <h4 hidden>filters</h4>
+    <form class="filter-form-container">
+      {% render 'partials/select.liquid',
+      select-id: "leerjaar",
+      select-label-text: "Leerjaar",
+      select-name: "leerjaar",
+      button-value-1: "Jaar 1",
+      button-value-2: "Jaar 2",
+      %}
+      {% render 'partials/search-bar.liquid',
+      search-bar-id: "search-classes",
+      search-bar-label-text: "Zoek klassen"
+      %}
+    </form>
+    <div class="toggle-container-2">
+      {% render 'partials/toggle.liquid',
+      input-id-1: "klassen",
+      input-id-2: "studenten",
+      label-text-1: "Klassen",
+      label-text-2: "Studenten",
+      label-name: "toggle-2"
+      %}
+    </div>
+  </section>
+  <section class="cards-parent-container">
+    <h4 hidden>Statistieken</h4>
+    {% for class in classes %}
+    {% assign class-details-link = "/details/" | append: class.id %}
+    {% assign percentage-append-class-name = "progress-chart-" | append: class.naam | replace: ' ', '' %}
+    {% render 'partials/class-card.liquid',
+    classname: class.naam,
+    name: class.begeleider,
+    progress: class.voortgang,
+    go-to-class: class-details-link,
+    progress-chart: percentage-append-class-name
+    %}
+    {% endfor %}
+  </section>
+</main>
 </html>
